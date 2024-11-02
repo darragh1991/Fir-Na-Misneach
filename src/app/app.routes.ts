@@ -1,14 +1,13 @@
 import { Routes } from '@angular/router';
-import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
-import { AuthenticationLayoutComponent } from './layout/authentication-layout/authentication-layout.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: AuthenticationLayoutComponent,
+    pathMatch: 'full',
+    redirectTo: 'home'
   },
   {
     path: 'home',
-    component: MainLayoutComponent,
-  }
+    loadChildren: () => import('./feature/home/home.routes'),
+   }
 ];
