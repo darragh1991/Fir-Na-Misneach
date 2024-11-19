@@ -1,5 +1,4 @@
 import { Routes } from "@angular/router";
-import { HomeComponent } from "./components/home.component";
 
 export default <Routes> [
   {
@@ -8,7 +7,7 @@ export default <Routes> [
     children: [
       {
         path: '',
-        loadComponent: () => import('./components/home.component').then(m => m.HomeComponent)
+        loadComponent: () => import('./components/home/home.component').then(m => m.HomeComponent)
       }
     ]
    }

@@ -2,24 +2,34 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MainLayoutComponent } from "./layout/main-layout/main-layout.component";
 import { AuthenticationLayoutComponent } from "./layout/authentication-layout/authentication-layout.component";
+import { NavigationEnd, Router, Event } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [MainLayoutComponent, AuthenticationLayoutComponent],
-  template: `<app-main-layout />`,
+  template: `
+  @if(isAutthenticatedLayout) {
+      <app-authentication-layout />
+    } @else {
+      <app-main-layout />
+    } `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-  title = 'international-sports-club';
+  title = 'Fir na Misneach';
 
-  #data = inject(HttpClient);
+  #httpClient = inject(HttpClient);
+  #router = inject(Router);
+
+  isAutthenticatedLayout = false;
 
   ngOnInit(): void {
-    this.getUsers();
-  }
-
-  getUsers() {
-    this.#data.get('http://localhost:3000/users').subscribe((data) => console.log(data));
+    this.#router.events.subscribe((event: Event) => {
+      if(event instanceof NavigationEnd) {
+        this.isAutthenticatedLayout = event.url.includes('login');
+      }
+    });
+      this.#httpClient.get('/users').subscribe((data) => console.log(data));
   }
 }
