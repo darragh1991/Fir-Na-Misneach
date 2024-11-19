@@ -5,6 +5,7 @@ const cors = require('cors')
 const http = require('http');
 // const usersRoutes = require('./routes/users.routes');
 const userRoutes = require('./routes/users.routes');
+const faqRoutes = require('./routes/faqs.routes');
 // const contentRoutes = require('./routes/content.routes');
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 
 app.use('/users', userRoutes);
+app.use('/faqs', faqRoutes);
 // app.use('/statuses', statusesRoutes);
 // app.use('/content', contentRoutes);
 
