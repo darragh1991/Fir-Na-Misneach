@@ -13,9 +13,9 @@ const get = (req, res) => {
   }
 }
 
-const getOne = (req, res) => {
-  const statusId = req.params.id;
-  const singleUser = faqsService.getById(statusId);
+const findFaqByQuestion = (req, res) => {
+  const faqIdentifier = req.params.id;
+  const singleUser = faqsService.filterByQuestion(faqIdentifier);
   if (singleUser) {
     ResponseHandler.sendSuccessResponse(res, singleUser);
   } else {
@@ -26,6 +26,6 @@ const getOne = (req, res) => {
   }
 }
 
-const FaqController = { get, getOne };
+const FaqController = { get, findFaqByQuestion };
 
 module.exports = FaqController;
