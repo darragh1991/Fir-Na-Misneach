@@ -28,4 +28,6 @@ server.listen(port, () => {
   console.log(`App listening to ${port} ...`);
 });
 
+module.exports = app;
+
 
