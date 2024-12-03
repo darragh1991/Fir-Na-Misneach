@@ -8,7 +8,8 @@
     "build": "nx build",
     "watch": "nx build --watch --configuration development",
     "test": "nx test",
-    "test:watch": "nx test --watch",
+    "test:watch": "nx test --watchAll",
+    "test:update": "nx test --updateSnapshot",
     "start:dev": "concurrently \"npm run start:server\" \"npm start\"",
     "test:node": "jest --config jest.node.config.js",
     "test:node:watch": "jest --config jest.node.config.js --watchAll"
@@ -46,6 +47,7 @@
     "@schematics/angular": "^18.0.7",
     "@types/jest": "^29.5.12",
     "cypress": "^13.13.0",
+    "husky": "^9.1.7",
     "jasmine-core": "~5.1.0",
     "jest": "^29.7.0",
     "nodemon": "^3.1.7",

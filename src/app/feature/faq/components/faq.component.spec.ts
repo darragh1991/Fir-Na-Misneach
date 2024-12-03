@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FaqComponent } from './faq.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('FaqComponent', () => {
   let component: FaqComponent;
@@ -8,7 +9,10 @@ describe('FaqComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FaqComponent]
+      imports: [FaqComponent],
+      providers: [
+        provideHttpClient()
+      ]
     })
     .compileComponents();
 
@@ -18,6 +22,6 @@ describe('FaqComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(fixture).toMatchSnapshot();
   });
 });
