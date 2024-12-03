@@ -1,20 +1,26 @@
 const ResponseHandler = require('../handlers/response.handler');
-const database = require('../db/database');
+const userService = require('../services/user.service');
 
-const get = function(req, res) {
-  const statuses = database.usersData.get();
-  ResponseHandler.sendSuccessResponse(res, statuses);
+const get = (req, res) => {
+  const user = userService.get();
+  if(user) {
+    return ResponseHandler.sendSuccessResponse(res, user);
+  } else {
+    return ResponseHandler.sendErrorResponse(res, {
+      data: undefined,
+      status: 404
+    });
+  }
 }
 
-const getOne = function(req, res) {
+const getOne = (req, res) => {
   const statusId = req.params.id;
-  database.usersData.get().find(u => u.id === statusId);
-  if (status) {
-    ResponseHandler.sendSuccessResponse(res, { status });
+  const singleUser = userService.getById(statusId);
+  if (singleUser) {
+    ResponseHandler.sendSuccessResponse(res, singleUser);
   } else {
     ResponseHandler.sendErrorResponse(res, {
       data: undefined,
-      message: 'Status was not found',
       status: 404
     });
   }

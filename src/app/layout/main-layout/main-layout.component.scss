@@ -1,0 +1,23 @@
+@import 'src/styles/variables.scss';
+
+.main-layout-header {
+  background-color: #DBAE58;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.image-anchor {
+  border: 1px solid lightgrey;
+  border-radius: 50%;
+}
+
+.header-image {
+  width: 4rem;
+  height: 4rem;
+  padding-left: 5px;
+  padding-bottom: 4px;
+  padding-right: 3px;
+}
+
+.sign-up-btn {
+  background-color: $brand-green;
+}

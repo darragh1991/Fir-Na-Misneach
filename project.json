@@ -1,0 +1,94 @@
+{
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "name": "fir-na-misneach",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss",
+      "standalone": true,
+      "changeDetection": "OnPush",
+      "displayBlock": true
+    }
+  },
+  "sourceRoot": "src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "options": {
+        "outputPath": "dist/fir-na-misneach",
+        "index": "src/index.html",
+        "browser": "src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
+        "tsConfig": "tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "src/favicon.ico",
+          "src/assets",
+          {
+            "glob": "**/*",
+            "input": "public"
+          }
+        ],
+        "styles": [
+          "src/styles/styles.scss",
+          "src/styles/variables.scss",
+          "node_modules/bootstrap/dist/css/bootstrap.min.css",
+          "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+        ],
+        "scripts": [
+          "node_modules/bootstrap/dist/js/bootstrap.min.js"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kB",
+              "maximumError": "1MB"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kB",
+              "maximumError": "4kB"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "fir-na-misneach:build:production"
+        },
+        "development": {
+          "buildTarget": "fir-na-misneach:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "./proxy.config.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n"
+    },
+    "test": {
+      "executor": "@angular-builders/jest:run",
+      "options": {
+        "configPath": "./jest.config.ts"
+      }
+    }
+  }
+}
