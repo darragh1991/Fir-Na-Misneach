@@ -10,14 +10,8 @@ const faqRepository = {
       }));
 
   },
-  filterByQuestion(question) {
-    return faqsDataStore
-      .filter(faq => faq.q.toLowerCase().includes(question.toLowerCase()))
-      .map((faq, index) => ({
-        id: index,
-        question: faq.q,
-        answer: faq.a
-      }));
+  getById(id) {
+    return faqsDataStore.find(u => u.id === id);
   }
 }
 

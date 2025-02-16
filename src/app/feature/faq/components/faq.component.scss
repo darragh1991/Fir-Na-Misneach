@@ -1,10 +1,3 @@
-@import 'src/styles/variables.scss';
-
-.header-container {
-  h1 {
-    color: $brand-green;
-  }
-}
-.y {
-  z-index: 1;
+:host {
+  display: block;
 }
