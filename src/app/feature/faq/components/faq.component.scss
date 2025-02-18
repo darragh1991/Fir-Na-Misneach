@@ -1,3 +1,9 @@
-:host {
-  display: block;
+@import 'src/styles/variables.scss';
+.header-container {
+  h1 {
+    color: $brand-green;
+  }
+}
+.y {
+  z-index: 1;
 }

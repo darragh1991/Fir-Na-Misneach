@@ -2,8 +2,41 @@
 
 exports[`FaqComponent should create 1`] = `
 <app-faq
-  faqService$={[Function Observable]}
+  renderFaq$={[Function Observable]}
 >
-  <!--container-->
+  <div
+    class="header-container d-flex justify-content-center py-3"
+  >
+    <h1>
+      Frequesntly Asked Questions
+    </h1>
+  </div><div
+    class="input-group flex-nowrap justify-content-center py-5"
+  >
+    <span
+      class="input-group-text"
+      id="addon-wrapping"
+    >
+      <i
+        class="bi bi-search"
+      />
+    </span>
+    <input
+      aria-describedby="addon-wrapping"
+      aria-label="Username"
+      class="form-control"
+      placeholder="filter by questions"
+      type="text"
+    />
+    <span
+      class="input-group-text"
+    >
+      <button
+        aria-label="Close"
+        class="btn-close"
+        type="button"
+      />
+    </span>
+  </div><!--container-->
 </app-faq>
 `;
