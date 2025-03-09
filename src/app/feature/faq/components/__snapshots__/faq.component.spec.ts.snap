@@ -2,6 +2,7 @@
 
 exports[`FaqComponent should create 1`] = `
 <app-faq
+  faqService={[Function FaqService]}
   renderFaq$={[Function Observable]}
 >
   <div

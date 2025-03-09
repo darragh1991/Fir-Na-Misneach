@@ -1,1 +1,3 @@
-
+@if ((users$ | async); as users) {
+  <h1>Welcome {{ (users | json) }}</h1>
+}

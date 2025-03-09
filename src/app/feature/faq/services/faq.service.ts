@@ -1,42 +1,21 @@
-
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { Observable, tap } from 'rxjs';
-export interface Faq {
-  id: number;
-  question: string;
-  answer: string;
-}
+import { inject, Injectable } from '@angular/core';
+import { catchError, map, Observable, of } from 'rxjs';
+
+import { Faq } from '../components/models/faq.model';
+
 @Injectable()
 export class FaqService {
 
-  httpClient = inject(HttpClient);
-  private faqsSignal = signal<Faq[]>([]);
-
+  readonly #httpClient = inject(HttpClient);
   data: Faq[] = [];
 
-  loadFaqs() {
-    return this.httpClient.get<{ data: Faq[] }>('/faqs').pipe(
-      tap(({ data }) => {
-        this.data = data;
-        this.faqsSignal.set(data)
-  }));
-  }
-  resetFaqs(): void {
-    this.faqsSignal.set(this.data);
-  }
-
-  filterByFaq(filter: string): void {
-    this.resetFaqs();
-    this.faqsSignal.update((faqs) => {
-      return faqs.filter(faq => {
-        return faq.question.toLowerCase().includes(filter.toLowerCase());
-      });
-    });
-  }
-
   getFaqs$(): Observable<Faq[]> {
-    return toObservable(this.faqsSignal);
+    return this.#httpClient.get<{ data: Faq[] }>('/faqs').pipe(
+      map(({ data }) =>  (data)),
+      catchError((error) => {
+        console.error('Error loading faqs', error);
+        return of([]);
+    }));
   }
 }

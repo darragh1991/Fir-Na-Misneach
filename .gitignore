@@ -43,6 +43,3 @@ Thumbs.db
 
 # Ignore package-lock.json
 package-lock.json
-
-.nx/cache
-.nx/workspace-data
