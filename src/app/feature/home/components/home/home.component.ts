@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { AsyncPipe, JsonPipe } from '@angular/common';
+import { AppInitService } from './../../../../core/services/app-init.service';
+import { Component, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Users } from 'src/app/core/constants/users.model';
 
 @Component({
-    selector: 'app-home',
-    imports: [],
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.scss'
+  selector: 'app-home',
+  imports: [AsyncPipe, JsonPipe],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss'
 })
-export class HomeComponent {
-
+export class HomeComponent  {
+  protected readonly users$: Observable<Users> = inject(AppInitService).getUsers$;
 }

@@ -11,21 +11,20 @@ import { take } from 'rxjs';
     styleUrl: './faq.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FaqComponent implements OnInit {
+export class FaqComponent  {
 
-  #faqService = inject(FaqService);
-  renderFaq$ = this.#faqService.getFaqs$();
-  ngOnInit(): void {
-    this.#faqService.loadFaqs().pipe(take(1)).subscribe();
-  }
-  filterFaq(event: Event) {
-    const filter = (event.target as HTMLInputElement).value;
-    this.#faqService.filterByFaq(filter);
-  }
+  private readonly faqService: FaqService = inject(FaqService);
+  protected readonly renderFaq$ = this.faqService.getFaqs$();
 
-  clearFilter() {
-    const inputElement = document.querySelector('.form-control') as HTMLInputElement;
-    inputElement.value = '';
-    this.#faqService.resetFaqs();
-  }
+
+  // filterFaq(event: Event) {
+  //   const filter = (event.target as HTMLInputElement).value;
+  //   this.#faqService.filterByFaq(filter);
+  // }
+
+  // clearFilter() {
+  //   const inputElement = document.querySelector('.form-control') as HTMLInputElement;
+  //   inputElement.value = '';
+  //   this.#faqService.resetFaqs();
+  // }
 }
