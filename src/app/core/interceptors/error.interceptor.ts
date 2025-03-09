@@ -10,7 +10,6 @@ export const errorInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, n
       if (error.status === 401 || error.status === 500) {
         router.navigate(['/error']);
       }
-      router.navigate(['/error']);
       return throwError(() => ({ hasError: true }));
     }));
 };
