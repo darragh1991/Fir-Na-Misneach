@@ -4,13 +4,12 @@ import { FaqService } from '../services/faq.service';
 import { take } from 'rxjs';
 
 @Component({
-  selector: 'app-faq',
-  standalone: true,
-  imports: [AsyncPipe],
-  providers: [FaqService],
-  templateUrl: './faq.component.html',
-  styleUrl: './faq.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-faq',
+    imports: [AsyncPipe],
+    providers: [FaqService],
+    templateUrl: './faq.component.html',
+    styleUrl: './faq.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FaqComponent implements OnInit {
 

@@ -37,6 +37,11 @@ exports[`FaqComponent should create 1`] = `
         type="button"
       />
     </span>
+  </div><div
+    class="accordion accordion-flush"
+    id="accordionFlushExample"
+  >
+    <!--container-->
   </div><!--container-->
 </app-faq>
 `;

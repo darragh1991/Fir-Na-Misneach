@@ -5,16 +5,15 @@ import { AuthenticationLayoutComponent } from "./layout/authentication-layout/au
 import { NavigationEnd, Router, Event } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [MainLayoutComponent, AuthenticationLayoutComponent],
-  template: `
+    selector: 'app-root',
+    imports: [MainLayoutComponent, AuthenticationLayoutComponent],
+    template: `
   @if(isAutthenticatedLayout) {
       <app-authentication-layout />
     } @else {
       <app-main-layout />
     } `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
   title = 'Fir na Misneach';
