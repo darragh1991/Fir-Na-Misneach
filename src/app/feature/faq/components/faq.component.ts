@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { FaqService } from '../services/faq.service';
-import { take } from 'rxjs';
 
 @Component({
     selector: 'app-faq',

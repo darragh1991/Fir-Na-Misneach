@@ -1,10 +1,10 @@
-import { APP_INITIALIZER, ApplicationConfig, inject, provideAppInitializer } from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer } from '@angular/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
 
 import { routes } from './app.routes';
 import { provideCore } from './core/core';
 import { AppInitService } from './core/services/app-init.service';
-import { provideHttpClient, withFetch } from '@angular/common/http';
-import { lastValueFrom } from 'rxjs';
 
 export function initializeApp() {
   const appInitService = inject(AppInitService);

@@ -2,6 +2,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin, map, Observable, of, tap } from 'rxjs';
+
 import { UsersService } from './users.service';
 import { AppInit } from '../constants/app-init.model';
 import { Users } from '../constants/users.model';

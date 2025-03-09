@@ -1,8 +1,9 @@
 import { AsyncPipe, JsonPipe } from '@angular/common';
-import { AppInitService } from './../../../../core/services/app-init.service';
 import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { Users } from 'src/app/core/constants/users.model';
+import { AppInitService } from './../../../../core/services/app-init.service';
 
 @Component({
   selector: 'app-home',

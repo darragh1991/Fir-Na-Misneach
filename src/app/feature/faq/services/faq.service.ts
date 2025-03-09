@@ -1,12 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { catchError, map, Observable, of, tap } from 'rxjs';
-export interface Faq {
-  id: number;
-  question: string;
-  answer: string;
-}
+import { inject, Injectable } from '@angular/core';
+import { catchError, map, Observable, of } from 'rxjs';
+
+import { Faq } from '../components/models/faq.model';
+
 @Injectable()
 export class FaqService {
 
