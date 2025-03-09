@@ -21,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./feature/login/login.routes')
+  },
+  {
+    path: 'error',
+    loadChildren: () => import('./feature/error/error.routes')
   }
 ];
