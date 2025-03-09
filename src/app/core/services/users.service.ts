@@ -14,10 +14,7 @@ export class UsersService {
   getUsers$(): Observable<Users> {
     return this.httpClient.get<{ data: Users }>('/users').pipe(
       map(({ data }) => data),
-      catchError((error) => {
-        console.error('Error loading users', error);
-        return of({hasError: true});
-      })
+      catchError((error) => of(error))
     );
   }
 }
