@@ -1,12 +1,19 @@
-module.exports = {
-  testEnvironment: 'node',
-  roots: ['<rootDir>/server/tests'],
-  testMatch: ['**/*.spec.js', '**/*.test.js'],
-  moduleFileExtensions: ['js', 'json'],
-  coverageDirectory: 'coverage/node',
+/** @type {import('jest').Config} */
+const config = {
+  verbose: true,
+  clearMocks: true,
+  collectCoverage: true,
+  coverageDirectory: "coverage",
   collectCoverageFrom: [
     'src/server/**/*.js',
     '!src/server/**/*.spec.js',
     '!src/server/**/*.test.js'
-  ]
+  ],
+  moduleFileExtensions: ['js', 'json'],
+  testEnvironment: 'node',
+  testMatch: [
+    '<rootDir>/server/tests/*.spec.js'
+  ],
 };
+
+module.exports = config;

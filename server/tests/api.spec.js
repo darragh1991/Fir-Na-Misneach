@@ -1,12 +1,15 @@
 const request = require('supertest');
-const app = require('../index');
+const server = require('../index');
 
 describe('API Endpoints', () => {
-  test('GET /api/status returns 200', async () => {
-    const response = await request(app)
-      .get('/users')
-      .expect(200);
 
+  afterAll((done) => {
+    server.close(done);
+  });
+
+  it('GET /api/status returns 200', async () => {
+    const response = await request(server).get('/users')
     expect(response.ok).toBeTruthy();
+
   });
 });

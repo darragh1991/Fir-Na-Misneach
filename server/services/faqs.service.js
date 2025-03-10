@@ -8,7 +8,6 @@ const faqRepository = {
         question: faq.q,
         answer: faq.a
       }));
-
   },
   getById(id) {
     return faqsDataStore.find(u => u.id === id);
