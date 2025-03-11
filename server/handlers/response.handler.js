@@ -1,18 +1,18 @@
-const sendSuccessResponse = function(res, responseOptions = { data: undefined, message: 'OK' }) {
+const sendSuccessResponse = (res, responseOptions = { data: undefined, message: 'OK' }) => {
   const response = { message: responseOptions.message, data: responseOptions };
   res.status(200).json(response);
 }
 
-const sendErrorResponse = function(res, options = {
+const sendErrorResponse = (res, options = {
   data: undefined,
   message: 'Something went wrong',
   status: 500
-}) {
+}) => {
   const response = { message: options.message, data: options.data };
   res.status(options.status).json(response);
 }
 
-const sendBadRequestResponse = function(res, missingParams) {
+const sendBadRequestResponse = (res, missingParams) => {
   let message = '';
   let i = 0;
   const amountOfMissingParams = missingParams.length;
