@@ -1,5 +1,5 @@
 const sendSuccessResponse = (res, responseOptions = { data: undefined, message: 'OK' }) => {
-  const response = { message: responseOptions.message, data: responseOptions };
+  const response = { data: responseOptions };
   res.status(200).json(response);
 }
 
