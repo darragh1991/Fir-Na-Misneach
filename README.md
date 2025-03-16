@@ -22,7 +22,7 @@ Testing framework used is Jest for the Angular application. With cypress for the
 
 ## Server side testing fraework
 
-Jest in combination with supertest is used for the server side testing.
+Jest in combination with supertest is used for the server side testing.    
 
 
 ## Further help

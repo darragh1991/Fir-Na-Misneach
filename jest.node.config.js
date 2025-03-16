@@ -3,16 +3,17 @@ const config = {
   verbose: true,
   clearMocks: true,
   collectCoverage: true,
-  coverageDirectory: "coverage",
   collectCoverageFrom: [
-    'src/server/**/*.js',
-    '!src/server/**/*.spec.js',
-    '!src/server/**/*.test.js'
+    "server/**/*.js",
+    "!server/tests/**",
+    "!server/db/**"
   ],
+  coverageDirectory: "coverage",
+  coverageReporters: ["json", "lcov", "text", "clover"],
   moduleFileExtensions: ['js', 'json'],
   testEnvironment: 'node',
   testMatch: [
-    '<rootDir>/server/tests/*.spec.js'
+    '<rootDir>/server/tests/**/*.spec.js'
   ],
 };
 

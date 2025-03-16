@@ -1,19 +1,12 @@
 const ResponseHandler = require('../handlers/response.handler');
-const userService = require('../services/user.service');
+const userService = require('../services/users.service');
 
 const get = (req, res) => {
   const user = userService.get();
-  if(user) {
-    return ResponseHandler.sendSuccessResponse(res, user);
-  } else {
-    return ResponseHandler.sendErrorResponse(res, {
-      data: undefined,
-      status: 404
-    });
-  }
+  return ResponseHandler.sendSuccessResponse(res, user);
 }
 
-const getOne = (req, res) => {
+const getById = (req, res) => {
   const statusId = req.params.id;
   const singleUser = userService.getById(statusId);
   if (singleUser) {
@@ -26,6 +19,6 @@ const getOne = (req, res) => {
   }
 }
 
-const UserController = { get, getOne };
+const UserController = { get, getById };
 
 module.exports = UserController;

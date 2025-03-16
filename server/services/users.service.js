@@ -5,6 +5,7 @@ const users = {
     return usersStore;
   },
   getById(id) {
+    console.log('ID:', id);
     return usersStore.find(u => u.id === id);
   }
 }

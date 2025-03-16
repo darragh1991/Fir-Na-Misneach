@@ -9,10 +9,6 @@ const faqRepository = {
         answer: faq.a
       }));
   },
-
-  getById(id) {
-    return faqsDataStore.find(u => u.id === id);
-  }
 }
 
 module.exports = faqRepository;
