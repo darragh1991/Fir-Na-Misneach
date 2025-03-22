@@ -5,8 +5,8 @@ const faqRepository = {
     return faqsDataStore.map((faq, index) =>
        ({
         id: index,
-        question: faq.q,
-        answer: faq.a
+        question: faq.question,
+        answer: faq.answer
       }));
   },
 }

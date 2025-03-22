@@ -20,9 +20,17 @@ Run `ng test` to execute the unit tests via Jest.
 
 Testing framework used is Jest for the Angular application. With cypress for the behvioural unit testing.
 
-## Server side testing fraework
+## Server side testing framework
 
-Jest in combination with supertest is used for the server side testing.    
+Jest in combination with Supertest is used for the server side testing. 
+Jest for testing business logic in isolation 
+Jest and Supertest to be for intergration testing
+
+## client side testing framework
+Leverage snapshot testing for basic template rendering 
+Jest for complicated client side functions
+Cypress for behavioral test
+
 
 
 ## Further help

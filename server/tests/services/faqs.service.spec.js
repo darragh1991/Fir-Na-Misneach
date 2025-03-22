@@ -2,12 +2,12 @@ const faqsService = require('../../services/faqs.service');
 
 jest.mock('../../db/faqs.json', () => [
   {
-    q: 'What is this?',
-    a: 'This is a FAQ.'
+    question: 'What is this?',
+    answer: 'This is a FAQ.'
   },
   {
-    q: 'How does it work?',
-    a: 'It works like magic.'
+    question: 'How does it work?',
+    answer: 'It works like magic.'
   }
 ]);
 

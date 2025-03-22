@@ -50,7 +50,6 @@ describe('UserController', () => {
   it('should send an error response for getOne when user not found', async () => {
     userService.getById.mockReturnValue(undefined);
     const response = await request(app).get('/users/999');
-    console.log('Response:', response.body);
     expect(response.status).toBe(404);
     expect(response.body).toEqual({
       data: undefined,

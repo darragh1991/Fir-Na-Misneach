@@ -12,7 +12,13 @@
 		"test:updateSnapshot": "jest --updateSnapshot",
 		"test:server": "jest --config jest.node.config.js --coverage",
 		"test:server:watch": "jest --config jest.node.config.js --watch",
-		"start:dev": "concurrently \"npm run start:server\" \"npm start\""
+		"test:all": "concurrently \"npm run test\" \"npm run test:server\"",
+		"start:dev": "concurrently \"npm run start:server\" \"npm start\"",
+		"coverage:clean": "rm -rf .nyc_output coverage",
+		"coverage:test": "concurrently \"jest --coverage --coverageDirectory=coverage/jest --coverageReporters=json --coverageReporters=lcov --coverageReporters=text\" \"cypress run --e2e --config video=false --config coverage=true\"",
+		"coverage:merge": "mkdir -p .nyc_output && istanbul-merge --out .nyc_output/out.json coverage/jest/coverage-final.json coverage/cypress/coverage-final.json",
+		"coverage:report": "nyc report --reporter=lcov --reporter=text-summary --reporter=html",
+		"coverage": "npm run coverage:clean && npm run coverage:test && npm run coverage:merge && npm run coverage:report"
 	},
 	"private": true,
 	"dependencies": {
@@ -38,13 +44,18 @@
 		"@angular/build": "^19.2.1",
 		"@angular/cli": "^19.2.1",
 		"@angular/compiler-cli": "^19.2.1",
+		"@cypress/code-coverage": "^3.13.12",
+		"@istanbuljs/nyc-config-typescript": "^1.0.2",
 		"@types/jest": "^29.5.12",
 		"cypress": "^13.13.0",
 		"husky": "^9.1.7",
+		"istanbul-lib-coverage": "^3.2.2",
+		"istanbul-merge": "^2.0.0",
 		"jasmine-core": "~5.1.0",
 		"jest": "^29.7.0",
 		"jest-preset-angular": "^14.5.3",
 		"nodemon": "^3.1.7",
+		"nyc": "^17.1.0",
 		"supertest": "^7.0.0",
 		"typescript": "~5.8.2"
 	}

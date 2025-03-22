@@ -8,7 +8,7 @@ const config = {
     "!server/tests/**",
     "!server/db/**"
   ],
-  coverageDirectory: "coverage",
+  coverageDirectory: "coverage/jest-node",
   coverageReporters: ["json", "lcov", "text", "clover"],
   moduleFileExtensions: ['js', 'json'],
   testEnvironment: 'node',
