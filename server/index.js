@@ -1,33 +1,40 @@
-const express = require('express');
-const path = require('path');
-const logger = require('morgan');
-const cors = require('cors')
 const http = require('http');
-// const usersRoutes = require('./routes/users.routes');
-const userRoutes = require('./routes/users.routes');
-const faqRoutes = require('./routes/faqs.routes');
-// const contentRoutes = require('./routes/content.routes');
+const app = require('./server');
 
-const app = express();
-const port = process.env.PORT || '3000';
-app.set('port', port);
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ limit: '5mb', extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors())
+function normalizePort(val) {
+  const port = Number(val);
+  return (Number.isInteger(port) && port >= 0) ? port : false;
+}
 
-app.use('/users', userRoutes);
-app.use('/faqs', faqRoutes);
-// app.use('/statuses', statusesRoutes);
-// app.use('/content', contentRoutes);
+function createServer() {
+  return http.createServer(app);
+}
 
-const server = http.createServer(app);
+function startServer(server, port = process.env.PORT || 3000) {
+  const normalizedPort = normalizePort(port);
 
-server.listen(port, () => {
-  console.log(`App listening to ${port} ...`);
-});
+  return new Promise((resolve, reject) => {
+    server.listen(normalizedPort, () => {
+      const actualPort = server.address().port;
+      console.log(`Server is running on port ${actualPort}`);
+      resolve(server);
+    });
 
-module.exports = app;
+    server.on('error', reject);
+  });
+}
+
+const server = createServer();
+
+if (require.main === module) {
+  startServer(server).catch(console.error);
+}
+
+module.exports = {
+  server,
+  startServer,
+  createServer,
+};
+
 
 

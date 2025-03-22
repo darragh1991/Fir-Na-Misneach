@@ -1,37 +1,30 @@
 /// <reference types="cypress" />
-// ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+
+
+Cypress.Commands.add('GIVEN', (givenStatement, autoEnd=true ) => {
+  return bddLogger('Given', givenStatement, autoEnd);
+});
+
+Cypress.Commands.add('WHEN', (givenStatement, autoEnd=true ) => {
+  return bddLogger('When', givenStatement, autoEnd);
+});
+
+Cypress.Commands.add('THEN', (givenStatement, autoEnd=true ) => {
+  return bddLogger('Then', givenStatement, autoEnd);
+});
+
+Cypress.Commands.add('AND', (givenStatement, autoEnd=true ) => {
+  return bddLogger('And', givenStatement, autoEnd);
+});
+
+Cypress.Commands.add('getQaTag', (qaTag) => {
+  return cy.get( `[data-qa]="${qaTag}"`, { log: false });
+});
+
+function bddLogger(step: string, statement: unknown, autoEnd=true) {
+  return Cypress.log({
+    name: step,
+    message: statement,
+    autoEnd: autoEnd
+  });
+}

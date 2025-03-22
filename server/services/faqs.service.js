@@ -5,14 +5,10 @@ const faqRepository = {
     return faqsDataStore.map((faq, index) =>
        ({
         id: index,
-        question: faq.q,
-        answer: faq.a
+        question: faq.question,
+        answer: faq.answer
       }));
-
   },
-  getById(id) {
-    return faqsDataStore.find(u => u.id === id);
-  }
 }
 
 module.exports = faqRepository;

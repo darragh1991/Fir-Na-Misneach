@@ -1,12 +1,21 @@
+process.env.NODE_ENV = 'test';
+
 const request = require('supertest');
-const app = require('../index');
+const { server, startServer } = require('../index');
 
 describe('API Endpoints', () => {
-  test('GET /api/status returns 200', async () => {
-    const response = await request(app)
-      .get('/users')
-      .expect(200);
+  let mockServer;
 
+  beforeAll(async () => {
+    mockServer = await startServer(server, 0);
+  });
+
+  afterAll((done) => {
+    (mockServer) ? mockServer.close(done) : done();
+  });
+
+  it('GET /users returns 200', async () => {
+    const response = await request(server).get('/users');
     expect(response.ok).toBeTruthy();
   });
 });
