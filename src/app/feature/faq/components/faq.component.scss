@@ -1,4 +1,5 @@
-@import 'src/styles/variables.scss';
+@use 'src/styles/variables.scss' as *
+;
 .header-container {
   h1 {
     color: $brand-green;

@@ -13,7 +13,7 @@
 </div>
 @if ((renderFaq$ | async); as faqs) {
 <div class="accordion accordion-flush" id="accordionFlushExample">
-  @for (faq of faqs; let index = $index; track $index) {
+  @for (faq of faqs?.faqs; let index = $index; track $index) {
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingOne">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"

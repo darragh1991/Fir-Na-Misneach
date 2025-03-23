@@ -15,15 +15,4 @@ export class FaqComponent  {
   private readonly faqService: FaqService = inject(FaqService);
   protected readonly renderFaq$ = this.faqService.getFaqs$();
 
-
-  // filterFaq(event: Event) {
-  //   const filter = (event.target as HTMLInputElement).value;
-  //   this.#faqService.filterByFaq(filter);
-  // }
-
-  // clearFilter() {
-  //   const inputElement = document.querySelector('.form-control') as HTMLInputElement;
-  //   inputElement.value = '';
-  //   this.#faqService.resetFaqs();
-  // }
 }

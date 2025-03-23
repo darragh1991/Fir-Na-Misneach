@@ -9,5 +9,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class LoginOrchestratorComponent {
   progressTracker = 0;
-  #amoutOfSteps = 2;
+
 }

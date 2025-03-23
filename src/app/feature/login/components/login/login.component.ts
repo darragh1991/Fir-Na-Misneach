@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { LoginOrchestratorComponent } from '../login-orchestrator/login-orchestrator.component';
 
+import { LoginFormComponent } from '../login-form/login-form.component';
 @Component({
     selector: 'app-login',
-    imports: [LoginOrchestratorComponent],
+    imports: [LoginFormComponent],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss'
 })

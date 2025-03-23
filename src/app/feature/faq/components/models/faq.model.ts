@@ -3,3 +3,8 @@ export interface Faq {
   question: string;
   answer: string;
 }
+
+export class FaqResponse {
+  faqs?: Faq[] = [];
+  hasError?: boolean = false;
+}
