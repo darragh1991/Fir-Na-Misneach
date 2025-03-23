@@ -8,7 +8,6 @@ import { AppInitService } from './core/services/app-init.service';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
 
 export function initializeApp(appInitService: AppInitService) {
-
   return () => lastValueFrom(appInitService.init());
 }
 

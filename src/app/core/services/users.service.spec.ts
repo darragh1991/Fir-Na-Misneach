@@ -9,11 +9,11 @@ describe('UsersService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-     providers: [
-      UsersService,
-      provideHttpClient(withFetch()),
-      provideHttpClientTesting(),
-     ]
+      providers: [
+        UsersService,
+        provideHttpClient(withFetch()),
+        provideHttpClientTesting()
+      ]
     });
     service = TestBed.inject(UsersService);
   });
