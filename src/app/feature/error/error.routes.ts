@@ -11,5 +11,5 @@ export default <Routes> [
       }
     ]
    }
-]
+];
 

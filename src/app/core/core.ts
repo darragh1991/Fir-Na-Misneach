@@ -6,20 +6,21 @@ import {
   withInMemoryScrolling,
   withRouterConfig
 } from '@angular/router';
-import { ENVIRONMENT_INITIALIZER, InjectionToken } from '@angular/core';
+import { isDevMode, provideEnvironmentInitializer } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
-import { isDevMode } from '@angular/core';
 import { developmentInitializer, productionInitializer } from './enviroment';
 
 export interface CoreOptions {
   routes: Routes;
+  production?: boolean;
 }
 
 export function provideCore({ routes }: CoreOptions) {
   return [
     provideAnimationsAsync(),
     provideHttpClient(),
+    provideEnvironmentInitializer(initializeApp),
     provideRouter(
       routes,
       withRouterConfig({ onSameUrlNavigation: 'reload' }),
@@ -31,9 +32,19 @@ export function provideCore({ routes }: CoreOptions) {
       }),
     ),
     {
-      provide: ENVIRONMENT_INITIALIZER,
       useValue: () => isDevMode() ? developmentInitializer() : productionInitializer(),
       multi: true
     }
   ];
+}
+
+export function initializeApp(): Promise<void> {
+  return new Promise((resolve) => {
+    if (isDevMode()) {
+      developmentInitializer();
+    } else {
+      productionInitializer();
+    }
+    resolve();
+  });
 }

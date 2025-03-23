@@ -4,7 +4,6 @@ import { FaqComponent } from './faq.component';
 import { provideHttpClient } from '@angular/common/http';
 
 describe('FaqComponent', () => {
-  let component: FaqComponent;
   let fixture: ComponentFixture<FaqComponent>;
 
   beforeEach(async () => {
@@ -17,7 +16,6 @@ describe('FaqComponent', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(FaqComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
