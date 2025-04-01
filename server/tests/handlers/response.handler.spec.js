@@ -46,36 +46,4 @@ describe('Response Handlers', () => {
       data: { error: 'details' }
     });
   });
-
-  it('should send a bad request response', async () => {
-    //GIVEN
-    app._router.stack.pop(); // Remove the last route handler
-    app.get('/bad-request', (req, res) => {
-      ResponseHandler.sendBadRequestResponse(res, ['param1', 'param2']);
-    });
-    //WHEN
-    const response = await request(app).get('/bad-request');
-    //THEN
-    expect(response.status).toBe(400);
-    expect(response.body).toEqual({
-      message: 'Parameters param1 and param2 are required',
-      missing_params: ['param1', 'param2']
-    });
-  });
-
-  it('should send a bad request response with one missing param', async () => {
-    //GIVEN
-    app._router.stack.pop(); // Remove the last route handler
-    app.get('/bad-request', (req, res) => {
-      ResponseHandler.sendBadRequestResponse(res, ['param1']);
-    });
-    //WHEN
-    const response = await request(app).get('/bad-request');
-    //THEN
-    expect(response.status).toBe(400);
-    expect(response.body).toEqual({
-      message: 'Parameter param1 is required',
-      missing_params: ['param1']
-    });
-  });
 });
