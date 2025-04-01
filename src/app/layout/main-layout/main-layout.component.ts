@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-
+import { ToasterComponent } from '../../ui/toaster/toaster.component';
 @Component({
     selector: 'app-main-layout',
     imports: [RouterOutlet, RouterLink],

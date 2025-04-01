@@ -12,7 +12,7 @@ export class UsersService {
   private readonly httpClient = inject(HttpClient);
 
   getUsers$(): Observable<Users> {
-    return this.httpClient.get<{ data: Users }>('/users').pipe(
+    return this.httpClient.get<{ data: Users }>('api/users').pipe(
       map(({ data }) => data),
       catchError((error) => of(error))
     );

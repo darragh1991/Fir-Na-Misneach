@@ -1,0 +1,6 @@
+@mixin underlineOnHoverFocus {
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}

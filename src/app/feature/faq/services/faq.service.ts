@@ -11,8 +11,8 @@ export class FaqService {
 
   getFaqs$(): Observable<FaqResponse> {
     const faqResponse: FaqResponse = new FaqResponse();
-    return this.httpClient.get<{ data: Faq[] }>('/faqs').pipe(
-      map(({ data }) =>  {
+    return this.httpClient.get<{data: Faq[]}>('api/faqs').pipe(
+      map(({data}) =>  {
         faqResponse.faqs = data;
         return faqResponse;
       }),

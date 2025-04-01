@@ -4,7 +4,7 @@ export class Users {
   isloading? = false;
 }
 
-interface IUsers {
+export interface IUsers {
   id: number;
   name: string;
   email: string;
