@@ -1,0 +1,43 @@
+
+.toast {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.color-warning {
+  background-color: #ffc107;
+}
+
+.text-warning {
+  color: #ffc107;
+}
+
+.pill-container {
+  margin-left: -6px;
+
+  .vertical-pill {
+    width: 4px;
+    height: 60px;
+    border-radius: 6px;
+    padding-right: 4px;
+  }
+}
+.toast-active {
+  opacity: 1;
+  animation: floatUp 4s ease-in-out infinite;
+}
+
+.toast {
+  z-index: 1000;
+}
+
+  @keyframes floatUp {
+    from {
+      transform: translate(-0%, 0);
+      opacity: 1;
+    }
+    to {
+      transform: translate(-0%, -200px);
+      opacity: .4;
+    }
+  }
+
