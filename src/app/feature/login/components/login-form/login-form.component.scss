@@ -1,3 +1,13 @@
-:host {
-  display: block;
+.login-container {
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 20px;
+  width: 500px;
+}
+.password-reset-link {
+  text-decoration: none;
+  color: #000;
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
 }
