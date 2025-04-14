@@ -7,5 +7,5 @@ export interface LoginForm {
 export interface LoginResult {
   success: boolean;
   error?: Error;
-  user?: IUsers;
+  isLoading?: boolean;
 }

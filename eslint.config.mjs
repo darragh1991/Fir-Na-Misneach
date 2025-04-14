@@ -2,7 +2,6 @@ import angularEslint from '@angular-eslint/eslint-plugin';
 import angularEslintTemplate from '@angular-eslint/eslint-plugin-template';
 import angularTemplateParser from '@angular-eslint/template-parser';
 import * as typescriptEslint from '@typescript-eslint/eslint-plugin';
-import typescriptParser from '@typescript-eslint/parser';
 
 const languageOptions = {
   parser: angularTemplateParser,
@@ -22,6 +21,7 @@ export default [
     files: ['**/*.component.html'],
     plugins: {
       '@angular-eslint/template': angularEslintTemplate,
+      "@typescript-eslint" : typescriptEslint,
     },
     languageOptions: {
       ...languageOptions
@@ -29,6 +29,7 @@ export default [
     rules: {
       '@angular-eslint/template/no-negated-async': 'error',
       '@angular-eslint/template/use-track-by-function': 'error',
+
     },
   },
   {

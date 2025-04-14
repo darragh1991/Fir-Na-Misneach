@@ -23,6 +23,7 @@ const determineLogin = (email, password) => {
     };
   }
 
+  // update to use JWT in the future
   const { password: _, ...userWithoutPassword } = user;
 
   return {

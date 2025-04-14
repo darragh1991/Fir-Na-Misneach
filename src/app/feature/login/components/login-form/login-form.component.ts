@@ -1,16 +1,18 @@
+import { LoginStore } from './../../store/login.store';
 import { ChangeDetectionStrategy, Component, inject, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgTemplateOutlet } from '@angular/common';
 
 import { LoginStateService } from '../../services/login-state.service';
 import { ValidateLoginFormService } from '../../services/validate-login-form.service';
+import { LoginForm } from '../../models/login-form.model';
 
 
 @Component({
   selector: 'app-login-form',
   standalone: true,
   imports: [ReactiveFormsModule, NgTemplateOutlet],
-  providers: [LoginStateService, ValidateLoginFormService],
+  providers: [LoginStateService],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -21,9 +23,9 @@ export class LoginFormComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
   });
-  protected readonly loginFormSubmit = output<FormGroup>();
 
   private readonly loginStateService = inject(LoginStateService);
+  protected readonly loginFormSubmit = output<LoginForm>();
 
   constructor() {
     this.loadFromLocalStorage();
@@ -47,7 +49,12 @@ export class LoginFormComponent {
 
   protected onSubmit(): void {
     if (this.loginForm.valid && this.loginForm.dirty) {
-      this.loginFormSubmit.emit(this.loginForm);
+      const email = this.loginForm.get('email')?.value ?? '';
+      const password = this.loginForm.get('password')?.value ?? '';
+      this.loginFormSubmit.emit({
+        email,
+        password
+      });
     } else {
       this.checkErrorCase('email');
     }
