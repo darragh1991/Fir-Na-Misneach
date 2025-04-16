@@ -1,4 +1,5 @@
 import { Injectable, Signal, signal } from '@angular/core';
+import { ToasterInfo } from './model/toaster-info.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,15 @@ export class ToasterService {
   private toasterType = signal('');
   private readonly toasterDuration = 4000;
 
-  renderToaster(toasterMessage: string, promptToaster: boolean, toasterType: string): void {
+  renderToaster(toasterInfo: ToasterInfo): void {
+    const { toasterMessage, promptToaster, toasterType } = toasterInfo;
     this.toasterMessage.set(toasterMessage);
     this.promptToaster.set(promptToaster);
     this.toasterType.set(toasterType);
     setTimeout(() => {
       this.promptToaster.set(false);
+      this.toasterMessage.set('');
+      this.toasterType.set('');
     }, this.toasterDuration);
   }
 
