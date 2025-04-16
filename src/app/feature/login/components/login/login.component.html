@@ -1,1 +1,4 @@
-<app-login-form (loginFormSubmit)="submitLoginForm($event)" />
+<div class="login-container">
+  <div class="container my-5">
+    <app-login-form (loginFormSubmit)="submitLoginForm($event)" (emitToaster)="promptToaster($event)" />
+  </div>

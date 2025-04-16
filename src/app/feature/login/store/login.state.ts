@@ -1,7 +1,7 @@
 import { LoginResult } from '../models/login-form.model';
 
 export const initialLoginState: LoginResult = {
-  success: false,
+  isSuccess: false,
   error: undefined,
   isLoading: false
 }

@@ -1,18 +1,19 @@
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { switchMap, debounceTime, pipe, tap, distinctUntilChanged, finalize } from 'rxjs';
+import { switchMap, debounceTime, pipe, distinctUntilChanged, finalize } from 'rxjs';
 import { computed, inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 
 import { initialLoginState } from './login.state'
 import { ValidateLoginFormService } from './../services/validate-login-form.service';
 import { LoginForm, LoginResult } from '../models/login-form.model';
-import { ToasterService } from 'src/app/ui/toaster/toaster.service';
+import { ToasterService } from '../../../ui/toaster/toaster.service';
+import { ToasterInfo } from 'src/app/ui/toaster/model/toaster-info.model';
 
 export const LoginStore = signalStore(
   withState(initialLoginState),
   withComputed((store) => ({
-    success: computed(() => store.success()),
+    success: computed(() => store.isSuccess()),
   })),
   withMethods((store, validateLoginForm = inject(ValidateLoginFormService)) => ({
       validateLogin: rxMethod<LoginForm>(
@@ -28,12 +29,13 @@ export const LoginStore = signalStore(
                 },
                 error: (error: Error) => {
                   patchState(store, () => ({
-                     success: false, error: error, isLoading: false
+                     isSuccess: false, error: error, isLoading: false
                   }));
                 }
               }), finalize(() => {
                 const toasterService = inject(ToasterService);
-                toasterService.renderToaster('Login successful', true, 'success');
+                const toasterInfo: ToasterInfo = {toasterMessage: 'Login successful', promptToaster: true, toasterType: 'success'};
+                toasterService.renderToaster(toasterInfo);
               })
             );
         })

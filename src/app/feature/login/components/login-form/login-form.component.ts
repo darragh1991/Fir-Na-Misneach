@@ -1,12 +1,10 @@
-import { LoginStore } from './../../store/login.store';
 import { ChangeDetectionStrategy, Component, inject, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgTemplateOutlet } from '@angular/common';
 
 import { LoginStateService } from '../../services/login-state.service';
-import { ValidateLoginFormService } from '../../services/validate-login-form.service';
 import { LoginForm } from '../../models/login-form.model';
-
+import { ToasterInfo } from '../../../../ui/toaster/model/toaster-info.model';
 
 @Component({
   selector: 'app-login-form',
@@ -19,13 +17,16 @@ import { LoginForm } from '../../models/login-form.model';
 })
 export class LoginFormComponent {
 
+  private readonly passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
   protected readonly loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required, Validators.pattern(this.passwordPattern)]),
   });
 
   private readonly loginStateService = inject(LoginStateService);
   protected readonly loginFormSubmit = output<LoginForm>();
+  protected readonly emitToaster = output<ToasterInfo>();
 
   constructor() {
     this.loadFromLocalStorage();
@@ -56,7 +57,14 @@ export class LoginFormComponent {
         password
       });
     } else {
+      this.loginForm.markAllAsTouched();
       this.checkErrorCase('email');
+      this.checkErrorCase('password');
+      const toasterInfo: ToasterInfo = {
+        toasterMessage: 'Please fill in all required fields correctly.',
+        promptToaster: true,
+        toasterType: 'warning'}
+      this.emitToaster.emit(toasterInfo);
     }
   }
 
