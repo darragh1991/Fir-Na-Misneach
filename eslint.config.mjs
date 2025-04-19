@@ -1,31 +1,32 @@
 import angularEslint from '@angular-eslint/eslint-plugin';
 import angularEslintTemplate from '@angular-eslint/eslint-plugin-template';
 import angularTemplateParser from '@angular-eslint/template-parser';
-import * as typescriptEslint from '@typescript-eslint/eslint-plugin';
+import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
 
-const languageOptions = {
-  parser: angularTemplateParser,
+const tsLanguageOptions = {
+  parser: typescriptParser,
   parserOptions: {
     project: './tsconfig.json',
     ecmaVersion: 2022,
     sourceType: 'module',
-    tsconfigRootDir: '.',
   },
+};
+
+const htmlLanguageOptions = {
+  parser: angularTemplateParser,
 };
 
 export default [
   {
-    ignores: ['**/dist', '**/node_modules', '**/coverage', '**/build', '**/server'],
+    ignores: ['**/dist/**', '**/node_modules/**', '**/coverage/**', '**/build/**', '**/server/**', '**/.angular/cache/**'],
   },
   {
-    files: ['**/*.component.html'],
+    files: ['**/*.html'],
     plugins: {
       '@angular-eslint/template': angularEslintTemplate,
     },
-    languageOptions: {
-      ...languageOptions
-    },
+    languageOptions: htmlLanguageOptions,
     rules: {
       '@angular-eslint/template/no-negated-async': 'error',
       '@angular-eslint/template/use-track-by-function': 'error',
@@ -37,9 +38,7 @@ export default [
       '@angular-eslint': angularEslint,
       '@typescript-eslint': typescriptEslint,
     },
-    languageOptions: {
-      ...languageOptions
-    },
+    languageOptions: tsLanguageOptions,
     rules: {
       '@angular-eslint/directive-selector': [
         'error',
@@ -51,6 +50,7 @@ export default [
       ],
       '@angular-eslint/use-lifecycle-interface': 'error',
       '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-non-null-assertion': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
   },

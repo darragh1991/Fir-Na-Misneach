@@ -2,20 +2,24 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 
-import { Faq } from '../components/models/faq.model';
+import { Faq, FaqResponse } from '../components/models/faq.model';
 
 @Injectable()
 export class FaqService {
 
-  readonly #httpClient = inject(HttpClient);
-  data: Faq[] = [];
+  private readonly httpClient = inject(HttpClient);
 
-  getFaqs$(): Observable<Faq[]> {
-    return this.#httpClient.get<{ data: Faq[] }>('/faqs').pipe(
-      map(({ data }) =>  (data)),
+  getFaqs$(): Observable<FaqResponse> {
+    const faqResponse: FaqResponse = new FaqResponse();
+    return this.httpClient.get<{data: Faq[]}>('api/faqs').pipe(
+      map(({data}) =>  {
+        faqResponse.faqs = data;
+        return faqResponse;
+      }),
       catchError((error) => {
         console.error('Error loading faqs', error);
-        return of([]);
+        faqResponse.hasError = true;
+        return of(faqResponse);
     }));
   }
 }

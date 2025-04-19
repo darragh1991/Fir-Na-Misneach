@@ -1,5 +1,8 @@
+const fs = require('fs');
+const https = require('https');
 const http = require('http');
 const app = require('./server');
+require('dotenv').config();
 
 function normalizePort(val) {
   const port = Number(val);
@@ -7,7 +10,15 @@ function normalizePort(val) {
 }
 
 function createServer() {
-  return http.createServer(app);
+  if (process.env.USE_HTTPS === 'true') {
+    const options = {
+      key: fs.readFileSync('./certs/key.pem'),
+      cert: fs.readFileSync('./certs/cert.pem')
+    };
+    return https.createServer(options, app);
+  } else {
+    return http.createServer(app);
+  }
 }
 
 function startServer(server, port = process.env.PORT || 3000) {
@@ -35,6 +46,3 @@ module.exports = {
   startServer,
   createServer,
 };
-
-
-

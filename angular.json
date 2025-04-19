@@ -39,7 +39,9 @@
             "styles": [
               "src/styles/styles.scss",
               "src/styles/variables.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/styles/mixins.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
@@ -73,10 +75,12 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "fir-na-misneach:build:production"
+              "buildTarget": "fir-na-misneach:build:production",
+              "proxyConfig": "./proxy.config.json"
             },
             "development": {
-              "buildTarget": "fir-na-misneach:build:development"
+              "buildTarget": "fir-na-misneach:build:development",
+              "proxyConfig": "./proxy.config.development.json"
             }
           },
           "defaultConfiguration": "development",

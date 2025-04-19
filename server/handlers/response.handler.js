@@ -2,7 +2,6 @@ const sendSuccessResponse = (res, responseOptions = { data: undefined, message: 
   const response = { data: responseOptions };
   res.status(200).json(response);
 }
-
 const sendErrorResponse = (res, options = {
   data: undefined,
   message: 'Something went wrong',
@@ -12,35 +11,9 @@ const sendErrorResponse = (res, options = {
   res.status(options.status).json(response);
 }
 
-const sendBadRequestResponse = (res, missingParams) => {
-  let message = '';
-  let i = 0;
-  const amountOfMissingParams = missingParams.length;
-
-  if (amountOfMissingParams > 1) {
-    message = 'Parameters ';
-    while (missingParams[i]) {
-      message += missingParams[i];
-      i++;
-      if (i < amountOfMissingParams - 1) {
-        message += ', ';
-      } else if (i < amountOfMissingParams) {
-        message += ' and ';
-      }
-    }
-    message += ' are required';
-  } else {
-    message = 'Parameter ' + missingParams[0] + ' is required';
-  }
-
-  const response = { message, missing_params: missingParams };
-  res.status(400).json(response);
-}
-
 const ResponseHandler = {
   sendSuccessResponse,
-  sendErrorResponse,
-  sendBadRequestResponse,
+  sendErrorResponse
 }
 
 module.exports = ResponseHandler;

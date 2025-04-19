@@ -1,0 +1,14 @@
+.login-container {
+  max-width: 400px;
+  margin: 6rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.password-reset-link {
+  text-decoration: none;
+  color: #000;
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
+}
