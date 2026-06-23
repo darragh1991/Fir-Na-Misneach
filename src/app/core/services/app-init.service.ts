@@ -11,17 +11,17 @@ import { Users } from '../constants/users.model';
 })
 export class AppInitService {
 
-  private readonly users$ = inject(UsersService).getUsers$();
-  private readonly users = signal<Users>({ hasError: false });
+  readonly #users$ = inject(UsersService).getUsers$();
+  readonly #users = signal<Users>({ hasError: false });
 
   get getUsers$(): Observable<Users> {
-    return toObservable(this.users);
+    return toObservable(this.#users);
   }
 
   init(): Observable<AppInit> {
-    return forkJoin([this.users$]).pipe(
+    return forkJoin([this.#users$]).pipe(
       tap(([users]) => {
-        this.users.set(users);
+        this.#users.set(users);
       }),
       map(([users]) => ({ users }))
     );

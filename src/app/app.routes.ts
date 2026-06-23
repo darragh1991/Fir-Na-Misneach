@@ -8,22 +8,22 @@ export const routes: Routes = [
   },
   {
     path: 'landing',
-    loadChildren: () => import('./feature/landing/landing.routes')
+    loadChildren: () => import('./features/landing/landing.routes')
   },
   {
     path: 'faq',
-    loadChildren: () => import('./feature/faq/faq.routes')
+    loadChildren: () => import('./features/faq/faq.routes')
   },
   {
     path: 'home',
-    loadChildren: () => import('./feature/home/home.routes')
+    loadChildren: () => import('./features/home/home.routes')
   },
   {
     path: 'login',
-    loadChildren: () => import('./feature/login/login.routes')
+    loadChildren: () => import('./features/login/login.routes')
   },
   {
     path: 'error',
-    loadChildren: () => import('./feature/error/error.routes')
+    loadChildren: () => import('./features/error/error.routes')
   }
 ];

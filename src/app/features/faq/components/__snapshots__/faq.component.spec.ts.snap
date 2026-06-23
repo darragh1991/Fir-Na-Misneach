@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FaqComponent should create 1`] = `
+<app-faq
+  renderFaq$={[Function Observable]}
+>
+  <div
+    class="header-container d-flex justify-content-center py-3"
+  >
+    <h1>
+      Frequesntly Asked Questions
+    </h1>
+  </div><div
+    class="accordion accordion-flush"
+    id="accordionFlushExample"
+  >
+    <!--container-->
+  </div><!--container-->
+</app-faq>
+`;

@@ -9,10 +9,10 @@ import { Users } from '../constants/users.model';
 })
 export class UsersService {
 
-  private readonly httpClient = inject(HttpClient);
+  readonly #httpClient = inject(HttpClient);
 
   getUsers$(): Observable<Users> {
-    return this.httpClient.get<{ data: Users }>('api/users').pipe(
+    return this.#httpClient.get<{ data: Users }>('api/users').pipe(
       map(({ data }) => data),
       catchError((error) => of(error))
     );
